@@ -5,24 +5,25 @@ namespace GameEngine
 {
     public class Bird
     {
-        public float x;
-        public float y;
-        public KeyboardKey Space;
+        private float x;
+        private float y;
+        private KeyboardKey Space;
 
         public Bird(float xMove, float yMove, KeyboardKey upSpace)
         {
-        
-         y = yMove;
-         Space = upSpace;
+            x = xMove;
+            y = yMove;
+            
+            Space = upSpace;
         }
 
         public void Update()
         {
-            if (Raylib.IsKeyDown(Space))
+            if (Raylib.IsKeyDown(Space) && y > 0)
             {
                 y -= 10f;
             }
-            else if (y > 0 && y < 750)
+            else if (y < 750)
             {
                 y += 8f;
             }

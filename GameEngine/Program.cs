@@ -13,6 +13,8 @@ namespace GameEngine
 
                 Bird BirdPlayer = new Bird(100, 250, KeyboardKey.KEY_SPACE);
 
+                Pipe PipeTest = new Pipe();
+
 
 
                 while (!Raylib.WindowShouldClose())
@@ -22,6 +24,7 @@ namespace GameEngine
 
                     BirdPlayer.Update();
                     BirdPlayer.Draw();
+                    PipeTest.Draw();
 
                     Raylib.EndDrawing();
                 }
