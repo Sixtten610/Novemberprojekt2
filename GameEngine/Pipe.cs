@@ -10,12 +10,16 @@ namespace GameEngine
         private int[] y;
         private Random generator = new Random();
 
+        private int NumberOfPassedPipes;
+
         public Pipe()
         {
             x = new int[2];
             y = new int[2];
 
             NewPipe();
+
+            NumberOfPassedPipes = 0;
         }
 
         private void NewPipe()
@@ -39,7 +43,17 @@ namespace GameEngine
             {
                 NewPipe();
             }
+            if (x[0] == 50)
+            {
+                NumberOfPassedPipes ++;
+            }
         }
+
+        public int PipesPassed()
+        {
+            return NumberOfPassedPipes;
+        }
+
         public void Draw()
         {
             for (int i = 0; i < 2; i++)

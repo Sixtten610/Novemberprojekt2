@@ -8,6 +8,8 @@ namespace GameEngine
         static void Main(string[] args)
         {
             {
+
+                // OBJEKT
                 Raylib.InitWindow(500, 800, "Game window");
                 Raylib.SetTargetFPS(60);
 
@@ -15,10 +17,10 @@ namespace GameEngine
 
                 Pipe Pipe = new Pipe();
 
-                
+                Point Points = new Point();
 
 
-
+                // LOGIK
                 while (!Raylib.WindowShouldClose())
                 {
                     Raylib.BeginDrawing();
@@ -29,6 +31,9 @@ namespace GameEngine
 
                     BirdPlayer.Draw();
                     Pipe.Draw();
+
+                    Points.Draw(Pipe.PipesPassed());
+
 
                     Raylib.EndDrawing();
                 }
