@@ -13,7 +13,9 @@ namespace GameEngine
 
                 Bird BirdPlayer = new Bird(100, 250, KeyboardKey.KEY_SPACE);
 
-                Pipe PipeTest = new Pipe();
+                Pipe Pipe = new Pipe();
+
+                
 
 
 
@@ -23,8 +25,10 @@ namespace GameEngine
                     Raylib.ClearBackground(Color.WHITE);
 
                     BirdPlayer.Update();
+                    Pipe.Update();
+
                     BirdPlayer.Draw();
-                    PipeTest.Draw();
+                    Pipe.Draw();
 
                     Raylib.EndDrawing();
                 }

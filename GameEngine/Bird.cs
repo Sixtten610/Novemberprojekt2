@@ -33,6 +33,5 @@ namespace GameEngine
             Raylib.DrawRectangle((int)x, (int)y, 50, 50, Color.BLACK);
         }
 
-
     }
 }
