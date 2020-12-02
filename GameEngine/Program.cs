@@ -5,6 +5,15 @@ namespace GameEngine
 {
     class Program
     {
+
+        enum GameScreens 
+        {
+            Intro,
+            Start,
+            Game,
+            GameOver
+        }
+
         static void Main(string[] args)
         {
             {
@@ -20,8 +29,12 @@ namespace GameEngine
 
                 Pipe Pipe = new Pipe(difficulty);
 
+                StartScreen startScreen = new StartScreen();
+
                 Point Points = new Point(difficulty);
 
+
+                GameScreens screen = GameScreens.Start;
 
                 // LOGIK
                 while (!Raylib.WindowShouldClose())
@@ -29,14 +42,20 @@ namespace GameEngine
                     Raylib.BeginDrawing();
                     Raylib.ClearBackground(Color.WHITE);
 
-                    Bird.Update();
-                    Pipe.Update();
+                    if (screen == GameScreens.Intro)
+                    {
 
-                    Bird.Draw();
-                    Pipe.Draw();
+                    }
+                    else if (screen == GameScreens.Start)
+                    {
+                        Bird.Update();
+                        Pipe.Update();
 
-                    Points.Draw(Pipe.PipesPassed());
+                        Bird.Draw();
+                        Pipe.Draw();
 
+                        Points.Draw(Pipe.PipesPassed());
+                    }
 
                     Raylib.EndDrawing();
                 }
