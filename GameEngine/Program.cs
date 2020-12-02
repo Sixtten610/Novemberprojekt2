@@ -8,16 +8,19 @@ namespace GameEngine
         static void Main(string[] args)
         {
             {
+                // Temporary code
+                int difficulty = 1;
 
-                // OBJEKT
+                // WINDOW
                 Raylib.InitWindow(500, 800, "Game window");
                 Raylib.SetTargetFPS(60);
 
-                Bird BirdPlayer = new Bird(100, 250, KeyboardKey.KEY_SPACE);
+                // OBJEKT
+                Bird Bird = new Bird(100, 250, KeyboardKey.KEY_SPACE);
 
-                Pipe Pipe = new Pipe();
+                Pipe Pipe = new Pipe(difficulty);
 
-                Point Points = new Point();
+                Point Points = new Point(difficulty);
 
 
                 // LOGIK
@@ -26,10 +29,10 @@ namespace GameEngine
                     Raylib.BeginDrawing();
                     Raylib.ClearBackground(Color.WHITE);
 
-                    BirdPlayer.Update();
+                    Bird.Update();
                     Pipe.Update();
 
-                    BirdPlayer.Draw();
+                    Bird.Draw();
                     Pipe.Draw();
 
                     Points.Draw(Pipe.PipesPassed());

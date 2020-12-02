@@ -6,11 +6,14 @@ namespace GameEngine
     public class Point
     {
         private int points;
+        private int difficulty;
         private string number;
 
 
-        public Point()
+        public Point(int d)
         {
+            difficulty = d;
+
             Draw(0);
         }
 
@@ -22,7 +25,16 @@ namespace GameEngine
 
             Raylib.DrawLine((int)0, (int)100, (int)500, (int)100, Color.GRAY);
   
-            Raylib.DrawText(number, 200, 25, 64, Color.GRAY);
+            Raylib.DrawText(number, 225, 25, 72, Color.GRAY);
+            
+            if (difficulty == 1)
+            {
+                Raylib.DrawText("H", 450, 35, 32, Color.RED);
+            }
+            else if (difficulty == 2)
+            {
+                Raylib.DrawText("I", 450, 35, 32, Color.YELLOW);
+            }
         }
 
 
