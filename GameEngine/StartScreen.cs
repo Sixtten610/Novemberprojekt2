@@ -132,21 +132,18 @@ namespace GameEngine
                 ChangeHighlight(0);
                 return 0;
             }
-
-            if (MousePosX > 200 && MousePosX < 300 && MousePosY > 525 && MousePosY < 575 
+            else if (MousePosX > 200 && MousePosX < 300 && MousePosY > 525 && MousePosY < 575 
             && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON) == true)
             {
                 ChangeHighlight(1);
                 return 1;
             }
-            if (MousePosX > 300 && MousePosX < 400 && MousePosY > 525 && MousePosY < 575 
+            else if (MousePosX > 300 && MousePosX < 400 && MousePosY > 525 && MousePosY < 575 
             && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON) == true)
             {
                 ChangeHighlight(2);
                 return 2;
             }
-
-
 
             return 0;
         }

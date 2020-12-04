@@ -29,7 +29,7 @@ namespace GameEngine
             {
                 Raylib.DrawText("E", 450, 35, 32, Color.GREEN);
             }
-            if (difficulty == 1)
+            else if (difficulty == 1)
             {
                 Raylib.DrawText("M", 450, 35, 32, Color.YELLOW);
             }
