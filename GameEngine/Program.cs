@@ -5,33 +5,25 @@ namespace GameEngine
 {
     class Program
     {
-
         enum GameScreens 
         {
             Start,
             Game,
             GameOver
         }
-
         static void Main(string[] args)
         {
             {
-                // Temporary code
-                int difficulty = 1;
-
                 // WINDOW
                 Raylib.InitWindow(500, 800, "Game window");
                 Raylib.SetTargetFPS(60);
 
                 // OBJEKT
-                Bird Bird = new Bird(100, 250, KeyboardKey.KEY_SPACE);
-                Pipe Pipe = new Pipe(difficulty);
-
-
                 StartScreen startScreen = new StartScreen();
 
-                Point Points = new Point(difficulty);
-
+                Bird Bird = new Bird(100, 250, KeyboardKey.KEY_SPACE);
+                Pipe Pipe = new Pipe();
+                Point Points = new Point();
 
                 GameScreens screen = GameScreens.Start;
 
@@ -45,11 +37,14 @@ namespace GameEngine
                     {
                         startScreen.DrawStartScreen();
 
+                        startScreen.CheckPressDifficulty();
+
                         if (startScreen.CheckPressStart() == true)
                         {
+                            Pipe.ChangeDifficulty(startScreen.GetDifficulty());
+                            Points.ChangeDifficulty(startScreen.GetDifficulty());
                             screen = GameScreens.Game;
                         } 
-
                     }
                     else if (screen == GameScreens.Game)
                     {
@@ -67,17 +62,12 @@ namespace GameEngine
                         Pipe.Draw();
 
                         Points.Draw(Pipe.PipesPassed());
-
-
-
-
                     }
                     else if (screen == GameScreens.GameOver)
                     {
-                         
+                        
                     }
                     
-
                     Raylib.EndDrawing();
                 }
             }

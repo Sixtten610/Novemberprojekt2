@@ -10,10 +10,8 @@ namespace GameEngine
         private string number;
 
 
-        public Point(int d)
+        public Point()
         {
-            difficulty = d;
-
             Draw(0);
         }
 
@@ -26,21 +24,23 @@ namespace GameEngine
             Raylib.DrawLine((int)0, (int)100, (int)500, (int)100, Color.GRAY);
   
             Raylib.DrawText(number, 225, 25, 72, Color.GRAY);
-            
+
+            if (difficulty == 0)
+            {
+                Raylib.DrawText("E", 450, 35, 32, Color.GREEN);
+            }
             if (difficulty == 1)
             {
-                Raylib.DrawText("H", 450, 35, 32, Color.RED);
+                Raylib.DrawText("M", 450, 35, 32, Color.YELLOW);
             }
             else if (difficulty == 2)
             {
-                Raylib.DrawText("I", 450, 35, 32, Color.YELLOW);
+                Raylib.DrawText("H", 450, 35, 32, Color.RED);
             }
         }
-
-
-
-
-
-
+        public void ChangeDifficulty(int NewDifficulty)
+        {
+            difficulty = NewDifficulty;
+        }
     }
 }

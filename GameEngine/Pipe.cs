@@ -11,10 +11,8 @@ namespace GameEngine
         public Rectangle rectPipeBottom = new Rectangle();
         private int NumberOfPassedPipes;
 
-        public Pipe(int d)
+        public Pipe()
         {
-            difficulty = d;
-
             rectPipeBottom.height = rectPipeTop.height = 800;
             rectPipeBottom.width = rectPipeTop.width = 80;
 
@@ -69,6 +67,11 @@ namespace GameEngine
             //Raylib.DrawRectangle((int)x[i], (int)y[i], 80, 800, Raylib_cs.Color.BLACK);  
             Raylib.DrawRectangleRec(rectPipeTop, Color.BLACK);
             Raylib.DrawRectangleRec(rectPipeBottom, Color.BLACK);
+        }
+
+        public void ChangeDifficulty(int NewDifficulty)
+        {
+            difficulty = NewDifficulty;
         }
 
     }
