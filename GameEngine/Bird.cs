@@ -5,34 +5,35 @@ namespace GameEngine
 {
     public class Bird
     {
-        private float x;
-        private float y;
+        public Rectangle rectBird = new Rectangle();
         private KeyboardKey Space;
+
 
         public Bird(float xMove, float yMove, KeyboardKey upSpace)
         {
-            x = xMove;
-            y = yMove;
+            rectBird.x = xMove;
+            rectBird.y = yMove;
+            rectBird.width = rectBird.height = 50;
             
             Space = upSpace;
         }
 
         public void Update()
         {
-            if (Raylib.IsKeyDown(Space) && y > 0)
+            if (Raylib.IsKeyDown(Space) && rectBird.y > 0)
             {
-                y -= 10f;
+                rectBird.y -= 10f;
             }
-            else if (y < 750)
+            else if (rectBird.y < 750)
             {
-                y += 8f;
+                rectBird.y += 8f;
             }
 
 
         }
         public void Draw()
         {
-            Raylib.DrawRectangle((int)x, (int)y, 50, 50, Color.BLACK);
+            Raylib.DrawRectangleRec(rectBird, Color.BLACK);
         }
 
     }

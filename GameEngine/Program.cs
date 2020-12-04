@@ -8,7 +8,6 @@ namespace GameEngine
 
         enum GameScreens 
         {
-            Intro,
             Start,
             Game,
             GameOver
@@ -26,8 +25,8 @@ namespace GameEngine
 
                 // OBJEKT
                 Bird Bird = new Bird(100, 250, KeyboardKey.KEY_SPACE);
-
                 Pipe Pipe = new Pipe(difficulty);
+
 
                 StartScreen startScreen = new StartScreen();
 
@@ -42,12 +41,25 @@ namespace GameEngine
                     Raylib.BeginDrawing();
                     Raylib.ClearBackground(Color.WHITE);
 
-                    if (screen == GameScreens.Intro)
+                    if (screen == GameScreens.Start)
                     {
+                        startScreen.DrawStartScreen();
+
+                        if (startScreen.CheckPressStart() == true)
+                        {
+                            screen = GameScreens.Game;
+                        } 
 
                     }
-                    else if (screen == GameScreens.Start)
+                    else if (screen == GameScreens.Game)
                     {
+                        if (Raylib.CheckCollisionRecs(Bird.rectBird, Pipe.rectPipeBottom) == true || 
+                        Raylib.CheckCollisionRecs(Bird.rectBird, Pipe.rectPipeTop) == true)
+                        {
+                            //screen = GameScreens.GameOver;
+                            System.Console.WriteLine("Hej");
+                        }
+
                         Bird.Update();
                         Pipe.Update();
 
@@ -55,7 +67,16 @@ namespace GameEngine
                         Pipe.Draw();
 
                         Points.Draw(Pipe.PipesPassed());
+
+
+
+
                     }
+                    else if (screen == GameScreens.GameOver)
+                    {
+                         
+                    }
+                    
 
                     Raylib.EndDrawing();
                 }

@@ -5,17 +5,18 @@ namespace GameEngine
 {
     public class Pipe
     {
-        private int[] x;
-        private int[] y;
         private int difficulty;
         private Random generator = new Random();
+        public Rectangle rectPipeTop = new Rectangle();
+        public Rectangle rectPipeBottom = new Rectangle();
         private int NumberOfPassedPipes;
 
         public Pipe(int d)
         {
-            x = new int[2];
-            y = new int[2];
             difficulty = d;
+
+            rectPipeBottom.height = rectPipeTop.height = 800;
+            rectPipeBottom.width = rectPipeTop.width = 80;
 
             NewPipe();
             NumberOfPassedPipes = 0;
@@ -24,36 +25,35 @@ namespace GameEngine
         {
             int centerOfPipe = generator.Next(600);
 
-            y[1] = -900 + centerOfPipe + difficulty * 75;
-            y[0] = 200 + centerOfPipe;
+            rectPipeTop.y = -900 + centerOfPipe + difficulty * 75;
+            rectPipeBottom.y = 200 + centerOfPipe;
 
-            x[0] = x[1] = 500;
+            rectPipeTop.x = rectPipeBottom.x = 500;
         }
 
         public void Update()
         {
-            
-            for (int i = 0; i < 2; i++)
+            if (difficulty == 0)
             {
-                if (difficulty == 0)
-                {
-                    x[i] -= 3;
-                }
-                else if (difficulty == 1)
-                {
-                    x[i] -= 5;
-                }
-                else if (difficulty == 2)
-                {
-                    x[i] -= 6;
-                }
+                rectPipeTop.x -= 3;
+                rectPipeBottom.x -= 3;
+            }
+            else if (difficulty == 1)
+            {
+                rectPipeTop.x -= 5;
+                rectPipeBottom.x -= 5;
+            }
+            else if (difficulty == 2)
+            {
+                rectPipeTop.x -= 6;
+                rectPipeBottom.x -= 6;
             }
 
-            if (x[0] < -120)
+            if (rectPipeBottom.x < -120)
             {
                 NewPipe();
             }
-            if (x[0] == 50)
+            if (rectPipeBottom.x == 50)
             {
                 NumberOfPassedPipes ++;
             }
@@ -66,10 +66,9 @@ namespace GameEngine
 
         public void Draw()
         {
-            for (int i = 0; i < 2; i++)
-            {
-                Raylib.DrawRectangle((int)x[i], (int)y[i], 80, 800, Raylib_cs.Color.BLACK);  
-            }
+            //Raylib.DrawRectangle((int)x[i], (int)y[i], 80, 800, Raylib_cs.Color.BLACK);  
+            Raylib.DrawRectangleRec(rectPipeTop, Color.BLACK);
+            Raylib.DrawRectangleRec(rectPipeBottom, Color.BLACK);
         }
 
     }
