@@ -30,8 +30,6 @@ namespace GameEngine
             }
 
             Draw();
-
-
         }
         private void Draw()
         {

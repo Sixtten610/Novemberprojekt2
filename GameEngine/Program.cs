@@ -58,6 +58,11 @@ namespace GameEngine
                         pipe.Update();
 
                         points.Draw(pipe.PipesPassed());
+
+                        if (bird.rectBird.y >= 750)
+                        {
+                            screen = GameScreens.GameOver;
+                        }
                     }
                     else if (screen == GameScreens.GameOver)
                     {
