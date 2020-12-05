@@ -162,5 +162,15 @@ namespace GameEngine
         {
             return Difficulty;
         }
+
+        public void ResetClass()
+        {
+            Difficulty = 0;
+
+            for (int i = 0; i < 3; i++)
+            {
+                ButtonHighlight[i] = 0;   
+            }
+        }
     }
 }

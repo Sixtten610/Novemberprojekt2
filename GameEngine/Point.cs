@@ -42,5 +42,18 @@ namespace GameEngine
         {
             difficulty = NewDifficulty;
         }
+
+        public int GetPoints()
+        {
+            return points;
+        }
+        public void ResetClass()
+        {
+            points = 0;
+
+            difficulty = 0;
+
+            number = "";
+        }
     }
 }

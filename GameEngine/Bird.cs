@@ -29,11 +29,19 @@ namespace GameEngine
                 rectBird.y += 8f;
             }
 
+            Draw();
+
 
         }
-        public void Draw()
+        private void Draw()
         {
             Raylib.DrawRectangleRec(rectBird, Color.BLACK);
+        }
+        
+        public void ResetClass()
+        {
+            rectBird.x = 100;
+            rectBird.y = 250;
         }
 
     }

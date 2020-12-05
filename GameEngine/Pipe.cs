@@ -55,6 +55,8 @@ namespace GameEngine
             {
                 NumberOfPassedPipes ++;
             }
+
+            Draw();
         }
 
         public int PipesPassed()
@@ -62,9 +64,8 @@ namespace GameEngine
             return NumberOfPassedPipes;
         }
 
-        public void Draw()
-        {
-            //Raylib.DrawRectangle((int)x[i], (int)y[i], 80, 800, Raylib_cs.Color.BLACK);  
+        private void Draw()
+        {  
             Raylib.DrawRectangleRec(rectPipeTop, Color.BLACK);
             Raylib.DrawRectangleRec(rectPipeBottom, Color.BLACK);
         }
@@ -72,6 +73,15 @@ namespace GameEngine
         public void ChangeDifficulty(int NewDifficulty)
         {
             difficulty = NewDifficulty;
+        }
+
+        public void ResetClass()
+        {
+            difficulty = 0;
+            NewPipe();
+            rectPipeTop.x = 500;
+            rectPipeBottom.x = 500;
+            NumberOfPassedPipes = 0;
         }
 
     }
