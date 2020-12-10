@@ -8,7 +8,7 @@ namespace GameEngine
         // enum för de olika skärmarna i game-whileloopen
         enum GameScreens 
         {
-            Start, Game, GameOver
+            Start, CountDown, Game, GameOver
         }
         static void Main(string[] args)
         {
@@ -22,9 +22,9 @@ namespace GameEngine
 
                 // SCREENS ###################################################################################
 
-                // skapar en instans av klassen StartScreen för att kunna använda klassens funktioner
+                // skapar en instans av klassen StartScreen för att kunna använda klassens metoder
                 StartScreen startScreen = new StartScreen();
-                // skapar en instans av klassen gameOverScreen för att kunna använda klassens funktioner
+                // skapar en instans av klassen gameOverScreen för att kunna använda klassens metoder
                 GameOverScreen gameOverScreen = new GameOverScreen();
                 
                 // OBJEKT ###################################################################################
@@ -66,9 +66,16 @@ namespace GameEngine
                             // samma sak görs även här endast skillnade är att klassmetoden i Point tar emot parametern.
                             points.ChangeDifficulty(startScreen.GetDifficulty());
 
-                            // enum screen ändras sedan till .Game för att låta spelaren starta spelet
-                            screen = GameScreens.Game;
+                            // enum screen ändras sedan till .Game för att starta spelet
+                            screen = GameScreens.CountDown;
                         } 
+                    }
+                    else if (screen == GameScreens.CountDown)
+                    {
+                        if (startScreen.DrawCountDownScreen() == true)
+                        {
+                            screen = GameScreens.Game;
+                        }
                     }
                     // if-sats för att rita ut spelet i game-loop
                     else if (screen == GameScreens.Game)

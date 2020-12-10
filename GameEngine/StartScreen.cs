@@ -1,34 +1,39 @@
+using System.Threading;
 using System;
 using Raylib_cs;
+using System.Threading.Tasks;
+
 
 namespace GameEngine
 {
     public class StartScreen
     {
-        Rectangle StartButton = new Rectangle();
-        Rectangle EasyButton = new Rectangle();
-        Rectangle MediumButton = new Rectangle();
-        Rectangle HardButton = new Rectangle();
+        Rectangle startButton = new Rectangle();
+        Rectangle easyButton = new Rectangle();
+        Rectangle mediumButton = new Rectangle();
+        Rectangle hardButton = new Rectangle();
 
-        private int[] ButtonHighlight;
-        private int Difficulty;
+        private int[] buttonHighlight;
+        private int difficulty;
 
-        private int MousePosX;
-        private int MousePosY;
+        private int mousePosX;
+        private int mousePosY;
 
-        Color LightOrange;
+        Color lightOrange;
 
         private string[] text;
+        private int smallcountdown;
 
 
 
         public StartScreen()
         {
             text = new string[5];
-            ButtonHighlight = new int[3];
-            Difficulty = 0;
+            buttonHighlight = new int[3];
+            difficulty = 0;
+            smallcountdown = 240;
 
-            LightOrange = new Color(255,194,102,255);
+            lightOrange = new Color(255,194,102,255);
 
             SetUpGraphics();
         }
@@ -43,23 +48,23 @@ namespace GameEngine
             text[3] = "Hard";
 
             // Höjd och bredd för alla knappar
-            StartButton.height = 100; 
-            StartButton.width = 300;
-            EasyButton.height = MediumButton.height = HardButton.height = 50;
-            EasyButton.width = MediumButton.width = HardButton.width = 100;
+            startButton.height = 100; 
+            startButton.width = 300;
+            easyButton.height = mediumButton.height = hardButton.height = 50;
+            easyButton.width = mediumButton.width = hardButton.width = 100;
 
             // X & Y position för knappen Start
-            StartButton.x = 100;
-            StartButton.y = 400;
+            startButton.x = 100;
+            startButton.y = 400;
             // X & Y position för knappen Easy
-            EasyButton.x = 100;
-            EasyButton.y = 525;
+            easyButton.x = 100;
+            easyButton.y = 525;
             // X & Y position för knappen Medium
-            MediumButton.x = 200;
-            MediumButton.y = 525;
+            mediumButton.x = 200;
+            mediumButton.y = 525;
             // X & Y position för knappen Hard
-            HardButton.x = 300;
-            HardButton.y = 525;            
+            hardButton.x = 300;
+            hardButton.y = 525;            
         }
 
         public void DrawStartScreen()
@@ -67,44 +72,44 @@ namespace GameEngine
                 Raylib.DrawText(text[4], 30, 100, 72, Color.BLACK);
                 Raylib.DrawText(text[4], 25, 105, 72, Color.GOLD);
 
-                MousePosX = Raylib.GetMouseX();
-                MousePosY = Raylib.GetMouseY();
+                mousePosX = Raylib.GetMouseX();
+                mousePosY = Raylib.GetMouseY();
 
 
-                if (MousePosX > 100 && MousePosX < 400 && MousePosY > 400 && MousePosY < 500)
+                if (mousePosX > 100 && mousePosX < 400 && mousePosY > 400 && mousePosY < 500)
                 {
-                    Raylib.DrawRectangleRec(StartButton, LightOrange);
+                    Raylib.DrawRectangleRec(startButton, lightOrange);
                 }
                 Raylib.DrawText(text[0], 150, 425, 60, Color.BLACK);
 
 
-                if (MousePosX > 100 && MousePosX < 200 && MousePosY > 525 && MousePosY < 575)
+                if (mousePosX > 100 && mousePosX < 200 && mousePosY > 525 && mousePosY < 575)
                 {
-                    Raylib.DrawRectangleRec(EasyButton, Color.LIGHTGRAY);
+                    Raylib.DrawRectangleRec(easyButton, Color.LIGHTGRAY);
                 }
-                else if (ButtonHighlight [0] == 1)
+                else if (buttonHighlight [0] == 1)
                 {
-                    Raylib.DrawRectangleRec(EasyButton, Color.ORANGE);
+                    Raylib.DrawRectangleRec(easyButton, Color.ORANGE);
                 }
                 Raylib.DrawText(text[1], 120, 535, 24, Color.BLACK);
 
-                if (MousePosX > 200 && MousePosX < 300 && MousePosY > 525 && MousePosY < 575)
+                if (mousePosX > 200 && mousePosX < 300 && mousePosY > 525 && mousePosY < 575)
                 {
-                    Raylib.DrawRectangleRec(MediumButton, Color.LIGHTGRAY);
+                    Raylib.DrawRectangleRec(mediumButton, Color.LIGHTGRAY);
                 }
-                else if (ButtonHighlight [1] == 1)
+                else if (buttonHighlight [1] == 1)
                 {
-                    Raylib.DrawRectangleRec(MediumButton, Color.ORANGE);
+                    Raylib.DrawRectangleRec(mediumButton, Color.ORANGE);
                 }
                 Raylib.DrawText(text[2], 212, 535, 24, Color.BLACK);
 
-                if (MousePosX > 300 && MousePosX < 400 && MousePosY > 525 && MousePosY < 575)
+                if (mousePosX > 300 && mousePosX < 400 && mousePosY > 525 && mousePosY < 575)
                 {
-                    Raylib.DrawRectangleRec(HardButton, Color.LIGHTGRAY);
+                    Raylib.DrawRectangleRec(hardButton, Color.LIGHTGRAY);
                 }
-                else if (ButtonHighlight [2] == 1)
+                else if (buttonHighlight [2] == 1)
                 {
-                    Raylib.DrawRectangleRec(HardButton, Color.ORANGE);
+                    Raylib.DrawRectangleRec(hardButton, Color.ORANGE);
                 }
                 Raylib.DrawText(text[3], 320, 535, 24, Color.BLACK);
                 
@@ -113,7 +118,7 @@ namespace GameEngine
 
         public bool CheckPressStart()
         {
-            if (MousePosX > 100 && MousePosX < 400 && MousePosY > 400 && MousePosY < 500 
+            if (mousePosX > 100 && mousePosX < 400 && mousePosY > 400 && mousePosY < 500 
             && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON) == true)
             {
                 return true;
@@ -126,19 +131,19 @@ namespace GameEngine
 
         public int CheckPressDifficulty()
         {
-            if (MousePosX > 100 && MousePosX < 200 && MousePosY > 525 && MousePosY < 575 
+            if (mousePosX > 100 && mousePosX < 200 && mousePosY > 525 && mousePosY < 575 
             && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON) == true)
             {
                 ChangeHighlight(0);
                 return 0;
             }
-            else if (MousePosX > 200 && MousePosX < 300 && MousePosY > 525 && MousePosY < 575 
+            else if (mousePosX > 200 && mousePosX < 300 && mousePosY > 525 && mousePosY < 575 
             && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON) == true)
             {
                 ChangeHighlight(1);
                 return 1;
             }
-            else if (MousePosX > 300 && MousePosX < 400 && MousePosY > 525 && MousePosY < 575 
+            else if (mousePosX > 300 && mousePosX < 400 && mousePosY > 525 && mousePosY < 575 
             && Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON) == true)
             {
                 ChangeHighlight(2);
@@ -149,27 +154,46 @@ namespace GameEngine
         }
         private void ChangeHighlight(int button)
         {
-            Difficulty = button;
+            difficulty = button;
             for (int i = 0; i < 3; i++)
             {
-                ButtonHighlight[i] = 0;
+                buttonHighlight[i] = 0;
             }
 
-            ButtonHighlight[button] = 1;
+            buttonHighlight[button] = 1;
+        }
+
+        public bool DrawCountDownScreen()
+        {
+            smallcountdown--;
+
+            string bigNumber = (smallcountdown / 60).ToString();
+            Raylib.DrawText(bigNumber, 30, 300, 100, Color.BLACK);
+            Raylib.DrawText(bigNumber, 35, 305, 100, Color.GOLD);
+
+            if (smallcountdown == 60)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public int GetDifficulty()
         {
-            return Difficulty;
+            return difficulty;
         }
 
         public void ResetClass()
         {
-            Difficulty = 0;
+            difficulty = 0;
+            smallcountdown = 240;
 
             for (int i = 0; i < 3; i++)
             {
-                ButtonHighlight[i] = 0;   
+                buttonHighlight[i] = 0;   
             }
         }
     }
