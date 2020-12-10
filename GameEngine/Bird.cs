@@ -41,7 +41,7 @@ namespace GameEngine
         // i metoden Draw ritas rektangeln för spelaren ut i färgen svart
         private void Draw()
         {
-            Raylib.DrawRectangleRec(rectBird, Color.BLACK);
+            Raylib.DrawRectangleRec(rectBird, Color.GOLD);
         }
         
         // reset-metoden återställer spelarens x och y position till ursprungsplatsen

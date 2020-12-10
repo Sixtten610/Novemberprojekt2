@@ -1,7 +1,5 @@
-using System.Threading;
 using System;
 using Raylib_cs;
-using System.Threading.Tasks;
 
 
 namespace GameEngine
@@ -23,6 +21,7 @@ namespace GameEngine
 
         private string[] text;
         private int smallcountdown;
+        private int startButtonFlash;
 
 
 
@@ -32,8 +31,9 @@ namespace GameEngine
             buttonHighlight = new int[3];
             difficulty = 0;
             smallcountdown = 240;
+            startButtonFlash = 50;
 
-            lightOrange = new Color(255,194,102,255);
+            lightOrange = new Color(255,194,102,120);
 
             SetUpGraphics();
         }
@@ -80,8 +80,23 @@ namespace GameEngine
                 {
                     Raylib.DrawRectangleRec(startButton, lightOrange);
                 }
-                Raylib.DrawText(text[0], 150, 425, 60, Color.BLACK);
-
+                
+                if (startButtonFlash > 50)
+                {
+                    Raylib.DrawText(text[0], 150, 425, 60, Color.BLACK);
+                }
+                else
+                {
+                    Raylib.DrawText(text[0], 150, 425, 60, Color.GOLD);
+                } 
+                if (startButtonFlash != 100)
+                {
+                    startButtonFlash++;
+                }
+                else
+                {
+                    startButtonFlash = 0;
+                }
 
                 if (mousePosX > 100 && mousePosX < 200 && mousePosY > 525 && mousePosY < 575)
                 {
@@ -89,7 +104,7 @@ namespace GameEngine
                 }
                 else if (buttonHighlight [0] == 1)
                 {
-                    Raylib.DrawRectangleRec(easyButton, Color.ORANGE);
+                    Raylib.DrawRectangleRec(easyButton, Color.GOLD);
                 }
                 Raylib.DrawText(text[1], 120, 535, 24, Color.BLACK);
 
@@ -99,7 +114,7 @@ namespace GameEngine
                 }
                 else if (buttonHighlight [1] == 1)
                 {
-                    Raylib.DrawRectangleRec(mediumButton, Color.ORANGE);
+                    Raylib.DrawRectangleRec(mediumButton, Color.GOLD);
                 }
                 Raylib.DrawText(text[2], 212, 535, 24, Color.BLACK);
 
@@ -109,7 +124,7 @@ namespace GameEngine
                 }
                 else if (buttonHighlight [2] == 1)
                 {
-                    Raylib.DrawRectangleRec(hardButton, Color.ORANGE);
+                    Raylib.DrawRectangleRec(hardButton, Color.GOLD);
                 }
                 Raylib.DrawText(text[3], 320, 535, 24, Color.BLACK);
                 
