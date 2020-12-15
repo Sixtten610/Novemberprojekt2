@@ -38,9 +38,9 @@ namespace GameEngine
                 Raylib.DrawText("H", 450, 35, 32, Color.RED);
             }
         }
-        public void ChangeDifficulty(int NewDifficulty)
+        public void ChangeDifficulty(int newDifficulty)
         {
-            difficulty = NewDifficulty;
+            difficulty = newDifficulty;
         }
 
         public int GetPoints()

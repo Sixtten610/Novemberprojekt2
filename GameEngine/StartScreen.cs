@@ -20,7 +20,7 @@ namespace GameEngine
         Color lightOrange;
 
         private string[] text;
-        private int smallcountdown;
+        private int smallCountDown;
         private int startButtonFlash;
 
 
@@ -30,7 +30,7 @@ namespace GameEngine
             text = new string[5];
             buttonHighlight = new int[3];
             difficulty = 0;
-            smallcountdown = 240;
+            smallCountDown = 240;
             startButtonFlash = 50;
 
             lightOrange = new Color(255,194,102,120);
@@ -180,13 +180,13 @@ namespace GameEngine
 
         public bool DrawCountDownScreen()
         {
-            smallcountdown--;
+            smallCountDown--;
 
-            string bigNumber = (smallcountdown / 60).ToString();
-            Raylib.DrawText(bigNumber, 30, 300, 100, Color.BLACK);
-            Raylib.DrawText(bigNumber, 35, 305, 100, Color.GOLD);
+            string bigNumber = (smallCountDown / 60).ToString();
+            Raylib.DrawText(bigNumber, 225, 300, 100, Color.BLACK);
+            Raylib.DrawText(bigNumber, 230, 305, 100, Color.GOLD);
 
-            if (smallcountdown == 60)
+            if (smallCountDown == 60)
             {
                 return true;
             }
@@ -204,7 +204,7 @@ namespace GameEngine
         public void ResetClass()
         {
             difficulty = 0;
-            smallcountdown = 240;
+            smallCountDown = 240;
 
             for (int i = 0; i < 3; i++)
             {

@@ -26,7 +26,7 @@ namespace GameEngine
 
             if (Raylib.GetMouseX() > 100 && Raylib.GetMouseX() < 400 && Raylib.GetMouseY() > 500 && Raylib.GetMouseY() < 600)
             {
-                Raylib.DrawRectangle(100, 500, 300, 100, Color.ORANGE);
+                Raylib.DrawRectangle(100, 500, 300, 100, Color.GOLD);
             }
             else
             {

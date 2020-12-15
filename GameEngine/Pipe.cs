@@ -9,7 +9,7 @@ namespace GameEngine
         private Random generator = new Random();
         public Rectangle rectPipeTop = new Rectangle();
         public Rectangle rectPipeBottom = new Rectangle();
-        private int NumberOfPassedPipes;
+        private int numberOfPassedPipes;
 
         public Pipe()
         {
@@ -17,7 +17,7 @@ namespace GameEngine
             rectPipeBottom.width = rectPipeTop.width = 80;
 
             NewPipe();
-            NumberOfPassedPipes = 0;
+            numberOfPassedPipes = 0;
         }
         private void NewPipe()
         {
@@ -53,7 +53,7 @@ namespace GameEngine
             }
             if (rectPipeBottom.x == 50)
             {
-                NumberOfPassedPipes ++;
+                numberOfPassedPipes ++;
             }
 
             Draw();
@@ -61,7 +61,7 @@ namespace GameEngine
 
         public int PipesPassed()
         {
-            return NumberOfPassedPipes;
+            return numberOfPassedPipes;
         }
 
         private void Draw()
@@ -70,9 +70,9 @@ namespace GameEngine
             Raylib.DrawRectangleRec(rectPipeBottom, Color.BLACK);
         }
 
-        public void ChangeDifficulty(int NewDifficulty)
+        public void ChangeDifficulty(int newDifficulty)
         {
-            difficulty = NewDifficulty;
+            difficulty = newDifficulty;
         }
 
         public void ResetClass()
@@ -81,7 +81,7 @@ namespace GameEngine
             NewPipe();
             rectPipeTop.x = 500;
             rectPipeBottom.x = 500;
-            NumberOfPassedPipes = 0;
+            numberOfPassedPipes = 0;
         }
 
     }
