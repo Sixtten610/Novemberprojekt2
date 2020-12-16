@@ -49,7 +49,7 @@ namespace GameEngine
             }
         }
 
-        public void GetScore(int s)
+        public void SetScore(int s)
         {
             score = s;
         }

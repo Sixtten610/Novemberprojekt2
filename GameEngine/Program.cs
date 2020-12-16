@@ -108,7 +108,7 @@ namespace GameEngine
                     {
                         // poängen spelaren fick under spelets gång hämtas från klassmetoden GetPoints i klassen Points
                         // parametern sätts sedan in i klassen gameOverScreen med syfte att rita ut (Score; x)
-                        gameOverScreen.GetScore(points.GetPoints());
+                        gameOverScreen.SetScore(points.GetPoints());
                         // tillkallar klassmetod Draw för att rita ut game over skärmen och dess knappar
                         gameOverScreen.DrawGameOverScreen();
                         
