@@ -5,11 +5,12 @@ namespace GameEngine
 {
     public class GameOverScreen
     {
+        // string-array som lagrar txten på knapparna
         private string[] text;
-
+        // int-variabel som lagrar poängen som spelaren hade när den dog
         private int score = 0;
 
-
+        // i konstruktorn skapas string-arrayen och texten förs in
         public GameOverScreen()
         {
             text = new string[3];
@@ -18,6 +19,7 @@ namespace GameEngine
             text[2] = "Score:";
         }
 
+        // I denna metod är all kod för att rita ut det grafiska på skärmen. Samt registrera om spelaren hovrar över en knapp.
         public void DrawGameOverScreen()
         {
             Raylib.DrawText(text[2] + " " + score, 70, 100, 32, Color.BLACK);
@@ -36,6 +38,7 @@ namespace GameEngine
 
         }
 
+        // metod som returnerar true/false om spelaren tryckt på main menu knappen
         public bool CheckPressButton()
         {
             if (Raylib.GetMouseX() > 100 && Raylib.GetMouseX() < 400 && Raylib.GetMouseY() > 500 && Raylib.GetMouseY() < 600 
@@ -49,11 +52,13 @@ namespace GameEngine
             }
         }
 
+        // metoden tar emot en parameter som int-variabeln score ändras till
         public void SetScore(int s)
         {
             score = s;
         }
 
+        // syftet med ResetClass är att återställa GameOverScreens variabel så att spelaren kan börja om
         public void ResetClass()
         {
             score = 0;

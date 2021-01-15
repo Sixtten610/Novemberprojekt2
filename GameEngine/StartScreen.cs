@@ -6,25 +6,35 @@ namespace GameEngine
 {
     public class StartScreen
     {
+        // rektanglarna(hitboxes) för startknappen och svårighetsgrad-knapparna
         Rectangle startButton = new Rectangle();
         Rectangle easyButton = new Rectangle();
         Rectangle mediumButton = new Rectangle();
         Rectangle hardButton = new Rectangle();
 
+        // int-array med syfte att lagra vilken knapp som ska vara highlightad
         private int[] buttonHighlight;
+        // int-variabel för difficulty
         private int difficulty;
 
+        // int-variabler för att lagra muspekarens position, syftet med dessa är att kunna jämnföra om musen är ovanpå en hitbox
         private int mousePosX;
         private int mousePosY;
 
+        // färg orandge
         Color lightOrange;
 
+        // string-arrayen lagrar namnen för de olika knapparna
         private string[] text;
+        // int-varriabel för att lagra nedräkningsnummret
         private int smallCountDown;
+        // lagrar ett nummer för att start-knapps-animationen ska fungerar korrekt
         private int startButtonFlash;
 
 
-
+        // konstruktorn för StartScreen definierar först String-arrayen text och buttonHighlight
+        // sedan ändras difficulty smallCountDown och startButtonFlash till korrekta konstanter.
+        // färg deffinieras också & en metod tillkallas
         public StartScreen()
         {
             text = new string[5];
@@ -37,7 +47,9 @@ namespace GameEngine
 
             SetUpGraphics();
         }
-
+        
+        // syftet med denna metod är att sprida ut koden och göra klassen mer väldisponerad och sorterad.
+        // här deffinieras text och höjd & bredd samt position för objekten i spelet
         private void SetUpGraphics()
         {
             text[4] = "Flappy BloX";
@@ -67,15 +79,18 @@ namespace GameEngine
             hardButton.y = 525;            
         }
 
+        // Denna metod ritar ut hella startskärmen
         public void DrawStartScreen()
         {
+                // Här är koden för Rubriken
                 Raylib.DrawText(text[4], 30, 100, 72, Color.BLACK);
                 Raylib.DrawText(text[4], 25, 105, 72, Color.GOLD);
-
+                // muspositionen uppdateras också
                 mousePosX = Raylib.GetMouseX();
                 mousePosY = Raylib.GetMouseY();
 
-
+                // om musen är över x & y kordinat kommer z knapp att bli orange för att highlighta och visa spelaren
+                // att knappen kan interageras med 
                 if (mousePosX > 100 && mousePosX < 400 && mousePosY > 400 && mousePosY < 500)
                 {
                     Raylib.DrawRectangleRec(startButton, lightOrange);
@@ -97,7 +112,8 @@ namespace GameEngine
                 {
                     startButtonFlash = 0;
                 }
-
+                // om spelaren trycker på en knapp blir den grå när spelaren lämnar med musen
+                // vilket indikerar att et alternativ är valt
                 if (mousePosX > 100 && mousePosX < 200 && mousePosY > 525 && mousePosY < 575)
                 {
                     Raylib.DrawRectangleRec(easyButton, Color.LIGHTGRAY);
@@ -130,7 +146,8 @@ namespace GameEngine
                 
   
         }
-
+        
+        // returnerar true eller false ifall spelaren tryckt på start
         public bool CheckPressStart()
         {
             if (mousePosX > 100 && mousePosX < 400 && mousePosY > 400 && mousePosY < 500 
@@ -144,6 +161,7 @@ namespace GameEngine
             }
         }
 
+        //
         public int CheckPressDifficulty()
         {
             if (mousePosX > 100 && mousePosX < 200 && mousePosY > 525 && mousePosY < 575 
@@ -178,6 +196,7 @@ namespace GameEngine
             buttonHighlight[button] = 1;
         }
 
+        // metod för nedräkning, körs 60gng/sekunden och för vare 60 räknar den från 3..2..1..
         public bool DrawCountDownScreen()
         {
             smallCountDown--;
@@ -196,11 +215,13 @@ namespace GameEngine
             }
         }
 
+        // returnerar int-variabeln difficulty
         public int GetDifficulty()
         {
             return difficulty;
         }
 
+        // syftet med ResetClass är att återställa Startscreen variabler så att spelaren kan börja om
         public void ResetClass()
         {
             difficulty = 0;
